@@ -6,10 +6,6 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <View>
-        <ImageBackground
-      source={require('../assets/lavadora.png')}
-      style={styles.background}
-    ></ImageBackground>
         <Text style={styles.title}>Bienvenido May</Text>
         <Pressable style={styles.send}>
           <Link href="/login" style={styles.textButton}>Iniciar Sesion</Link>

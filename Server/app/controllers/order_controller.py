@@ -17,6 +17,16 @@ def create_order(client_id, user_id, estimated_date,total_price):
 
 
 
+def add_service(name, description, price):
+    Service= Service(name=name, description=description, price=price)
+    db.session.add(Service)
+    db.session.commit()
+    return Service
+
+
+
+
+
 def add_garment_to_order(order_id, type, description, notes):
     garment = Garment(order_id=order_id, type=type, description=description, observations=notes)
     db.session.add(garment)
@@ -26,6 +36,34 @@ def add_garment_to_order(order_id, type, description, notes):
 
 
 
+
+def get_order_detail(order_id):
+    order = Order.query.get(order_id)
+    order_data ={
+        "order_id": order_id,
+        "client": order.clients.name,
+        "status": order.state,
+        "garments":[]
+    }
+    garments = Garment.query.filter_by(order_id=order_id)
+
+    for garment in garments:
+        garment.data = {
+            "type": garment.type,
+            "description": garment.description,
+            "observations": garment.observations,
+            "services":[]
+        }
+        for gs in garment.order_detail:
+            Service = Service.query.get(id=gs.service_id)
+            service_data = {
+                "name": gs.name,
+                "description": gs.discription,
+                "price": gs.price
+            }
+            garment.data["services"].append(service_data)
+        order_data["garments"].append(garment.data)
+    return order_data
 
 def create_order_detail(garment_id, service_id, quantity):
     order_detail = OrderDetail(garment_id=garment_id, service_id=service_id, quantity=quantity)

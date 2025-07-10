@@ -14,6 +14,10 @@ def create_app():
     from app.models.client import Client
     from app.models.order import Order
     from app.models.user import User
+    from app.models.garment import Garment
+    from app.models.order_detail import OrderDetail
+    from app.models.service import Service
+    from app.models.log import Log
 
     db.init_app(app)
     jwt.init_app(app)
@@ -21,9 +25,10 @@ def create_app():
     #rutas
     from .routes.user_route import user_db
     from .routes.client_route import client_bp
+    from .routes.order_route import order_bp
     app.register_blueprint(client_bp)
     app.register_blueprint(user_db)
-
+    app.register_blueprint(order_bp)
     CORS(app)
     return app
 

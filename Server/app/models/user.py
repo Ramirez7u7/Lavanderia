@@ -24,5 +24,5 @@ def to_dict(self, orders:bool=False):
             'created_at':self.created_at,
         }
         if orders:
-              user['orders']= self,orders
+              user['orders']= self.orders
         return user

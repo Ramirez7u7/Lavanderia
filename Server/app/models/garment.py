@@ -10,3 +10,16 @@ class Garment(db.Model):
     description = db.Column(db.String(255)) 
     observations = db.Column(db.String(255))
     order_details = db.relationship("OrderDetail", backref="garment", lazy=True)
+
+
+    def to_dict(self, order_detail:bool=False):
+        """ garment = {
+            'id':self.id,
+            'type':self.type,
+            'description':self.description,
+            'observations':self.observations,
+        }
+        if order_detail:
+              garment['order_detail']= self.order_detail
+        return garment """
+        return self.__dict__
