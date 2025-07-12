@@ -1,88 +1,126 @@
-import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Link } from 'expo-router';
+import React from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+  Switch,
+} from 'react-native';
 
 
-export default function Home() {
+
+
+const VistaCrearOrdenLibre = () => {
+  const serviciosEjemplo = [
+    { id: 'lavado', nombre: 'Lavado' },
+    { id: 'planchado', nombre: 'Planchado' },
+    { id: 'secado', nombre: 'Secado' },
+    { id: 'tintoreria', nombre: 'Tintorería' },
+  ];
+
+
+
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>Bienvenido May</Text>
-        <Pressable style={styles.send}>
-          <Link href="/login" style={styles.textButton}>Iniciar Sesion</Link>
-        </Pressable>
-        <Pressable style={styles.sends}>
-          <Link href="/Register" style={styles.textButton}>Registrarse</Link>
-        </Pressable>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.card}>
+        <Text style={styles.titulo}>Crear Nueva Orden</Text>
+
+
+
+        <Text style={styles.subtitulo}>Prenda</Text>
+        <TextInput
+          style={styles.input}
+        />
+
+
+
+<Text style={styles.subtitulo}>Cantidad</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+        />
+
+
+
+
+
+        <Text style={styles.subtitulo}>Servicios</Text>
+        {serviciosEjemplo.map((servicio) => (
+          <View key={servicio.id} style={styles.servicioRow}>
+            <Text style={styles.servicioNombre}>{servicio.nombre}</Text>
+            <Switch value={false} />
+          </View>
+        ))}
+<Text style={styles.subtitulo}>Descripcion</Text>
+<TextInput
+          style={styles.input}
+        />
+
+        <TouchableOpacity style={styles.boton}>
+          <Text style={styles.botonTexto}>Crear Orden</Text>
+        </TouchableOpacity>
+      
       </View>
-    </View>
+    </ScrollView>
   );
-}
+};
+
 
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    padding: 20,
+    backgroundColor: '#E5E5E5',
+    flexGrow: 1,
+    justifyContent: 'center',
   },
-  label: {
-    marginTop: 20,
-    fontSize: 20,
-    fontWeight: "bold",
+  card: {
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    padding: 20,
+    elevation: 5,
   },
-  title: {
-    fontSize: 30,
-    marginTop: 70,
-    fontWeight: "bold",
-    margin: 15
+  titulo: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
   },
-  recover: {
-    backgroundColor: "darkred",
-    borderRadius: 10,
+  subtitulo: {
+    fontSize: 18,
+    fontWeight: '600',
     marginTop: 15,
-    alignItems: "center",
-    paddingVertical: 10,
-    padding: 15
+    marginBottom: 10,
   },
   input: {
-    borderRadius: 50,
-    borderWidth: 3,
-    borderColor: "gray",
-    fontSize: 20,
-    paddingHorizontal: 10,
-    marginVertical: 15,
-    backgroundColor: "white",
+    backgroundColor: '#F0F0F0',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 10,
   },
-  textButton: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
+  servicioRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
   },
-  containerFooter: {
-    marginTop: 20,
-    alignItems: "center",
+  servicioNombre: {
+    fontSize: 16,
   },
-  footerText: {
-    fontSize: 20,
-    margin: 5,
+  boton: {
+    backgroundColor: '#2196F3',
+    padding: 14,
+    borderRadius: 8,
+    marginTop: 25,
   },
-  sends: {
-    backgroundColor: "red",
-    borderRadius: 50,
-    marginTop: 75,
-    alignItems: "center",
-    paddingVertical: 10,
-    width:300
-  },
-  send: {
-    backgroundColor: "blue",
-    borderRadius: 50,
-    marginTop: 75,
-    alignItems: "center",
-    paddingVertical: 10,
-    width:300
+  botonTexto: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
+
+export default VistaCrearOrdenLibre;
