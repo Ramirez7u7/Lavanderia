@@ -26,6 +26,7 @@ def create_app():
     from .routes.user_route import user_db
     from .routes.client_route import client_bp
     from .routes.order_route import order_bp
+    from .routes.garment_route import garment_bp
     app.register_blueprint(client_bp)
     app.register_blueprint(user_db)
     app.register_blueprint(order_bp)
