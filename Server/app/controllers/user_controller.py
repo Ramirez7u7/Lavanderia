@@ -57,3 +57,14 @@ def get_user_logs(user_id):
     return logs
 
 
+
+def get_users():
+    return User.query.filter().all()
+
+def delete_user(client_id):
+    user = User.query.delete(client_id)
+    if not user:
+        return None 
+    db.session.delete(user)
+    db.session.commit()
+    return User

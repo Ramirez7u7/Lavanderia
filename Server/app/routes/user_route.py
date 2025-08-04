@@ -2,7 +2,8 @@ from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash
 from app.models.user import User
 from app.database.db import db
-from app.controllers.user_controller import login_user, logout_user, update_user, toggle_user_status, get_user_logs
+from app.controllers.user_controller import login_user, logout_user, update_user, toggle_user_status, get_user_logs, get_users, delete_user
+
 
 
 
@@ -78,3 +79,13 @@ def get_logs(user_id):
         "logs":data
     }) ,200
 
+
+
+@user_db.route("/get-all", methods=["GET"])
+def get_all():
+    users = get_users()
+    return [user.to_dict() for user in users]
+
+@user_db.route("/delete/<int:id>", methods=["DELETE"])
+def delete(id):
+    return delete_user(id)

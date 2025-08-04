@@ -149,10 +149,10 @@ def get_pending_orders_dashboard(pagination):
 
 
 def get_counting():
-    num_garments = Garment.query.filter(Garment).count()
-    num_service = Service.query.filter(Service).count()
-    num_clients = Client.query.filter(Client).count()
-    num_users = User.query.filter(User).count()
+    num_garments = Garment.query.filter().count()
+    num_service = Service.query.filter().count()
+    num_clients = Client.query.filter().count()
+    num_users = User.query.filter().count()
     data = {
         "quantity_garments":num_garments,
         "quantity_services":num_service,

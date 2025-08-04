@@ -48,4 +48,4 @@ def get_services():
     services = Service.query.filter(Service).all()
     if not services:
         return None
-    return services
+    return [service.to_dict() for service in services ]

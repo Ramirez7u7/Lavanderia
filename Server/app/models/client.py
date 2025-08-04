@@ -22,5 +22,4 @@ class Client(db.Model):
         }
         if orders:
             client['orders'] = self.orders
-        
         return client

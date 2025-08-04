@@ -13,13 +13,12 @@ class Service(db.Model):
 
 
 def to_dict(self, garment_link:bool=False):
-        """ service = {
+         service = {
             'id':self.id,
             'name':self.name,
             'description':self.description,
             'price':self.price,
-        }
-        if garment_link:
-              user['garment_link']= self.garment_link 
-        return service"""
-        return self.__dict__
+         }
+         if garment_link:
+                service['garment_link'] = self.garment_link
+                return service
